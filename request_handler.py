@@ -70,7 +70,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         # print(resource)
         # print(id)
         # print(filters)
-        # response = f"{get_teams(filters)}"
+        response = f"{get_teams(filters)}"
 
         self.wfile.write(response.encode())
 
