@@ -17,11 +17,9 @@ class HandleRequests(BaseHTTPRequestHandler):
         return filters
 
     def parse_url(self, path):
-        # print(f"path is {path}")
         id = None
         filters = None
         url_parts = path.split("/")
-        # print(f"url_parts: {url_parts}")
 
         resource = url_parts[1]
         if "?" in resource:
@@ -74,7 +72,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 def main():
     host = ''
-    port = 8080
+    port = 8088
     HTTPServer((host, port), HandleRequests).serve_forever()
 
 
