@@ -38,7 +38,7 @@ def get_teams(filters):
                         SELECT
                             t.id,
                             t.name,
-                            ts.id score_id,
+                            ts.id AS score_id,
                             ts.teamId,
                             ts.score,
                             ts.timeStamp
@@ -49,6 +49,7 @@ def get_teams(filters):
                         dataset = db_cursor.fetchall()
 
                         for row in dataset:
+
                             if row['id'] not in teams:
                                 team = Team(row['id'], row['name'])
                                 teams[row['id']] = team
@@ -56,9 +57,10 @@ def get_teams(filters):
                                 team = teams[row['id']]
 
                             score = int(row['score']) if row['score'] is not None else 0
+                            print("debug")
                             if score > 0:
                                 team_score = TeamScore(row['score_id'], row['teamId'], score, row['timeStamp'])
-                            team.scores.append(team_score.__dict__)
+                                team.scores.append(team_score.__dict__)
 
 
                     elif related_resource == "players":
