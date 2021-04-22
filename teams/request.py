@@ -57,7 +57,7 @@ def get_teams(filters):
                                 team = teams[row['id']]
 
                             score = int(row['score']) if row['score'] is not None else 0
-                            print("debug")
+
                             if score > 0:
                                 team_score = TeamScore(row['score_id'], row['teamId'], score, row['timeStamp'])
                                 team.scores.append(team_score.__dict__)
@@ -86,7 +86,7 @@ def get_teams(filters):
                                 team = teams[row['id']]
 
                             player = Player(row['player_id'], row['firstName'], row['lastName'], row['teamId'])
-                        team.players.append(player.__dict__)
+                            team.players.append(player.__dict__)
 
             json_teams = []
             for team in teams.values():
