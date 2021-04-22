@@ -17,10 +17,11 @@ class HandleRequests(BaseHTTPRequestHandler):
         return filters
 
     def parse_url(self, path):
+        # print(f"path is {path}")
         id = None
         filters = None
         url_parts = path.split("/")
-        url_parts.pop(0)
+        # print(f"url_parts: {url_parts}")
 
         resource = url_parts[1]
         if "?" in resource:
@@ -65,14 +66,18 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         response = {}
         (resource, id, filters) = self.parse_url(self.path)
-        response = f"{get_teams(filters)}"
+        # print("made it here")
+        # print(resource)
+        # print(id)
+        # print(filters)
+        # response = f"{get_teams(filters)}"
 
         self.wfile.write(response.encode())
 
 
 def main():
     host = ''
-    port = 8089
+    port = 8080
     HTTPServer((host, port), HandleRequests).serve_forever()
 
 
